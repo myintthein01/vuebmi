@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>home Work</title>
+    <script type="text/javascript" src="vue.min.js"></script>
+    <link rel="stylesheet" href="bootstrap.min.css">
+</head>
+<body>
+    <div class="container col-12 mt-3">
+        <div class="row col-6 offset-3">
+            <div id="app">
+                <div class="card mt-2">
+                    <div class="card-header">
+                        BMI Calculate
+                    </div>
+                    <div class="card-body">
+                        <form>
+                            <div class="form-row">
+                                <div class="col-6">
+                                    <label>Feet</label>
+                                    <input type="number" class="form-control" v-model="feet" >
+                                </div>
+                                <div class="col-6">
+                                    <label>inches</label>
+                                    <input type="number" class="form-control" v-model="inches" >
+                                </div>
+                                <div class=" col-12 mt-2">
+                                    <label>Weight</label>
+                                    <input type="number" class="form-control" v-model="weight" >
+                            </div>
+                            </div >
+                            <p class="mt-3" v-if="result<19" style="color: blue;" >Under Wight</p>
+                            <p class="mt-3" v-else-if="result<24" style="color: green;" >Normal Wight</p>
+                            <p class="mt-3" v-else-if="result<29" style="color: yellow;" >Over Wight</p>
+                            <p class="mt-3" v-else="result<30" style="color: red;" >Obesity</p>
+                        </form>
+                        <a v-on:click="calculate" class="btn btn-primary mt-2">Calculate</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        var app = new Vue({
+          el: '#app',
+          data: {
+            message: 'Hello Vue!',
+            feet:null,
+            inches:null,
+            weight:null,
+            result:''
+          },
+          methods:{
+            calculate:function(){
+                var feet = parseInt(this.feet);
+                var inches = parseInt(this.inches);
+                var weight = parseInt(this.weight)*703;
+                var hight = (feet*12);
+                var hight1= (hight + inches);
+                var hight2 =(hight1*hight1);
+                var final =(weight/hight2);
+                this.result=final;
+            }
+          }
+        })
+    </script>
+    <script src="jquery-3.3.1.min.js"></script>
+    <script src="bootstrap.min.js"></script>
+</body>
+</html>
